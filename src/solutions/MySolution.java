@@ -3,27 +3,68 @@ package solutions;
 public class MySolution implements Solution {
     @Override
     public String reverseString(String word) {
-        return null;
+        StringBuilder result = new StringBuilder();
+    	for(int i = word.length()-1;i>=0;i--){
+			result.append(word.charAt(i));
+        }
+        return result.toString();
     }
 
     @Override
     public long factorialize(int number) {
-        return 0;
+        long result = 1;
+		for (int i = 1;number>=i;i++){
+			result *= i;
+		}
+    	return result;
     }
 
     @Override
     public boolean palindrome(String word) {
-        return false;
+        word = word.toLowerCase().replaceAll("[^a-zA-Z0-9']+","");
+        int counter = word.length();
+        for(int i = 0;i<word.length()-1;i++){
+	        counter--;
+        	if(word.charAt(i)!=word.charAt(counter)){
+        		return false;
+	        }
+        }
+    	return true;
     }
 
     @Override
     public int findLongestWord(String word) {
-        return 0;
+        String[]words = word.split(" ");
+        int longest=words[0].length();
+        for(int i = 1;i<words.length;i++){
+        	if(words[i].length()>longest){
+        		longest = words[i].length();
+	        }
+        }
+    	return longest;
     }
 
     @Override
     public String titleCase(String word) {
-        return null;
+        String result = "";
+        String[] words = word.toLowerCase().split(" ");
+        for(int i = 0;i<words.length;i++){
+        	String chars = words[i];
+        	String resultWord="";
+        	for(int j = 0;j<chars.length();j++){
+        		if(j==0){
+        			resultWord+=Character.toUpperCase(chars.charAt(0));
+        			continue;
+		        }
+		        resultWord+=chars.charAt(j);
+	        }
+	        if(i<words.length-1){
+        		result+=resultWord+" ";
+        		continue;}
+        		result += resultWord;
+	        }
+
+    	return result;
     }
 
     @Override
@@ -33,12 +74,20 @@ public class MySolution implements Solution {
 
     @Override
     public boolean confirmEnding(String word, String end) {
-        return false;
+	    return word.endsWith(end);
     }
 
     @Override
     public String repeatStringNumTimes(String word, int counter) {
-        return null;
+        StringBuilder returnString = new StringBuilder();
+        if(counter <= 0){
+        	return "";
+        }
+        for(int i = 0; i<counter; i++){
+        	returnString.append(word);
+        }
+
+    	return returnString.toString();
     }
 
     @Override
